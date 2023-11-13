@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-df_fruit_list = pd.from_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
+df_fruit_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
 
 st.title('My Parents New Healthy Dinner')
 

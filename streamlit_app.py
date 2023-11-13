@@ -18,5 +18,11 @@ st.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 fruits_selected = st.multiselect("Pick some fruits:", list(df_fruit_list.index), ['Avocado', 'Strawberries'])
 fruits_to_show = df_fruit_list.loc[fruits_selected]
 
+def non_empty(obj1, obj2):
+  if len(obj1) > 0:
+    return obj1
+  else: 
+    return obj2
+  
 # Display the table on the page.
-st.dataframe(fruits_to_show or df_fruit_list)
+st.dataframe(non_empty(fruits_to_show, df_fruit_list))

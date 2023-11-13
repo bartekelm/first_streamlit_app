@@ -15,7 +15,7 @@ st.text('🥑🍞 Avocado Toast')
 st.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 # Let's put a pick list here so they can pick the fruit they want to include 
-streamlit.multiselect("Pick some fruits:", list(df_fruit_list.index))
+st.multiselect("Pick some fruits:", list(df_fruit_list.index))
 
 # Display the table on the page.
 st.dataframe(df_fruit_list)

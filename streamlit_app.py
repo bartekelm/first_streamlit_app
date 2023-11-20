@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import snowflake.connector
+from urllib.error import URLError
 
 df_fruit_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
 df_fruit_list.set_index('Fruit', inplace=True)
@@ -46,5 +47,12 @@ my_cur.execute("select * from fruit_load_list")
 my_data_row = my_cur.fetchall()
 st.text("The fruit load list contains:")
 st.dataframe(my_data_row)
+
+st.stop()
+# Allow the end user to add a fruit to the list
+add_my_fruit = st.text_input('What fruit would you like to add?','Kiwi')
+st.write('Thanks for adding ', add_my_fruit)
+my_cur.execute(f"insert into fruit_load_list values ({add_my_fruit})")
+
 
 

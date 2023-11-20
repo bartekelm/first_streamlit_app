@@ -30,4 +30,4 @@ st.dataframe(non_empty(fruits_to_show, df_fruit_list))
 
 # another section
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response)
+st.text(fruityvice_response)

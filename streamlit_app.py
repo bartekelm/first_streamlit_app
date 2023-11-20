@@ -70,7 +70,7 @@ def insert_fruit_load_list(fruit):
     return f"Thanks for adding {fruit}"
 
 my_fruit = st.text_input('What fruit would you like to add?')
-if streamlit.button('Add a Fruit to the List'):
+if st.button('Add a Fruit to the List'):
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   st.text (insert_fruit_load_list(my_fruit))
   my_cnx.close()

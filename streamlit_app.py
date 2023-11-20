@@ -35,7 +35,7 @@ st.header("Fruityvice Fruit Advice!")
 
 def get_fruityvice_data(fruit):
   fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit}")
-  fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+  fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
 
 try:

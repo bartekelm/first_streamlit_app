@@ -31,7 +31,7 @@ def non_empty(obj1, obj2):
 st.dataframe(non_empty(fruits_to_show, df_fruit_list))
 
 # another section
-st.header("Fruityvice Fruit Advice!")
+st.header('Fruityvice Fruit Advice!')
 
 def get_fruityvice_data(fruit):
   fruityvice_response = requests.get(f'https://fruityvice.com/api/fruit/{fruit}')
@@ -57,15 +57,21 @@ def get_fruit_load_list():
 
 st.header('The fruit load list contains:')
 if st.button('Get Fruit Load List'):
-  my_snx = snowflake.connector.connect(**st.secrets['snowflake'])
+  my_cnx = snowflake.connector.connect(**st.secrets['snowflake'])
   my_data_rows = get_fruit_load_list()
   st.dataframe(my_data_rows)
 
-st.stop()
+
 # Allow the end user to add a fruit to the list
-add_my_fruit = st.text_input('What fruit would you like to add?','Kiwi')
-st.write('Thanks for adding ', add_my_fruit)
-my_cur.execute(f'insert into fruit_load_list values ({add_my_fruit}))
+def insert_fruit_load_list(fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute(f"insert into fruit_load_list values ('{fruit}')")
+    return f"Thanks for adding {fruit}"
+
+if st.button('Add a Fruit to the list!):
+  my_cnx = snowflake.connector.connect(**st.secrets['snowflake'])
+  my_fruit = st.text_input('What fruit would you like to add?','Kiwi')
+  st.write(insert_fruit_load_list(my_fruit))
 
 
 

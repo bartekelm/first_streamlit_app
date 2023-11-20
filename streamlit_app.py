@@ -70,7 +70,7 @@ def insert_fruit_load_list(fruit):
 
 if st.button('Add a Fruit to the list!'):
   my_cnx = snowflake.connector.connect(**st.secrets['snowflake'])
-  my_fruit = st.text_input('What fruit would you like to add?','Kiwi')
+  my_fruit = st.text_input('What fruit would you like to add?')
   st.write(insert_fruit_load_list(my_fruit))
 
 

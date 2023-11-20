@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import requests
 
 df_fruit_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
 df_fruit_list.set_index('Fruit', inplace=True)
@@ -26,3 +27,7 @@ def non_empty(obj1, obj2):
   
 # Display the table on the page.
 st.dataframe(non_empty(fruits_to_show, df_fruit_list))
+
+# another section
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+streamlit.text(fruityvice_response)

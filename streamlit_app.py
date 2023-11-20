@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import snowflake.commector
 
 df_fruit_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
 df_fruit_list.set_index('Fruit', inplace=True)
@@ -37,4 +38,12 @@ fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit_cho
 # take the json version of the response and normalize it
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json ()) #output it the screen as a table
 st.dataframe (fruityvice_normalized)
+
+# snowflake
+my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+st.text("Hello from Snowflake:")
+st.text(my_data_row)
 

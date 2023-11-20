@@ -55,7 +55,7 @@ def get_fruit_load_list():
     return my_cur.fetchall()
 
 
-st.header('The fruit load list contains:')
+st.header('View our Fruit List - add your favorites!')
 if st.button('Get Fruit Load List'):
   my_cnx = snowflake.connector.connect(**st.secrets['snowflake'])
   my_data_rows = get_fruit_load_list()
@@ -68,7 +68,7 @@ def insert_fruit_load_list(fruit):
     my_cur.execute(f"insert into fruit_load_list values ('{fruit}')")
     return f"Thanks for adding {fruit}"
 
-if st.button('Add a Fruit to the list!):
+if st.button('Add a Fruit to the list!'):
   my_cnx = snowflake.connector.connect(**st.secrets['snowflake'])
   my_fruit = st.text_input('What fruit would you like to add?','Kiwi')
   st.write(insert_fruit_load_list(my_fruit))

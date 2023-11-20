@@ -25,9 +25,11 @@ def non_empty(obj1, obj2):
   else: 
     return obj2
   
-# Display the table on the page.
+# New Section to display fruityvice api response
 st.dataframe(non_empty(fruits_to_show, df_fruit_list))
 
 # another section
+st.header("Fruityvice Fruit Advice!")
+
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
+st.text(fruityvice_response.json())
